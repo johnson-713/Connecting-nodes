@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    @apply m-0 h-full overflow-x-hidden bg-pipeline-app font-sans text-pipeline-text antialiased;
+  }
+}
+
+@layer components {
+  .pipeline-canvas {
+    @apply w-full overflow-hidden;
+  }
+
+  .pipeline-canvas .react-flow {
+    @apply h-full w-full;
+  }
+
+  .pipeline-canvas .react-flow__background {
+    @apply bg-pipeline-app;
+  }
+
+  .pipeline-canvas .react-flow__controls button {
+    @apply border-pipeline-border bg-pipeline-elevated text-pipeline-text;
+  }
+
+  .pipeline-canvas .react-flow__controls button:hover {
+    @apply bg-violet-600/15;
+  }
+
+  .pipeline-canvas .react-flow__minimap {
+    @apply rounded-[10px] border border-pipeline-border bg-pipeline-surface;
+  }
+}
