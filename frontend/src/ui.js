@@ -1,8 +1,9 @@
 import { useState, useRef, useCallback } from 'react';
-import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
+import ReactFlow, { Controls, Background, MiniMap, Panel } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { nodeTypes, getDefaultNodeData } from './nodes';
+import { PipelineToolbar } from './toolbar';
 
 import 'reactflow/dist/style.css';
 
@@ -82,7 +83,10 @@ export const PipelineUI = () => {
         fitView
       >
         <Background color="#30363d" gap={gridSize} />
-        <Controls />
+        <Panel position="top-left" className="pipeline-toolbar-panel">
+          <PipelineToolbar />
+        </Panel>
+        <Controls position="bottom-left" />
         <MiniMap nodeColor="#7c3aed" maskColor="rgba(13, 17, 23, 0.75)" />
       </ReactFlow>
     </div>
