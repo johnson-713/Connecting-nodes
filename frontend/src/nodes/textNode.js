@@ -5,10 +5,6 @@ import { BaseNode } from './BaseNode';
 import { NodeField } from './NodeField';
 import { parseVariables } from './parseVariables';
 
-const MIN_WIDTH = 220;
-const MIN_HEIGHT = 100;
-const MAX_WIDTH = 420;
-
 export function TextNode({ id, data }) {
   const textareaRef = useRef(null);
   const updateNodeField = useStore((state) => state.updateNodeField);
@@ -16,24 +12,17 @@ export function TextNode({ id, data }) {
   const text = data?.text ?? '{{input}}';
   const variables = useMemo(() => parseVariables(text), [text]);
 
-  const resizeNode = useCallback(() => {
+  const resizeTextarea = useCallback(() => {
     const el = textareaRef.current;
     if (!el) return;
 
     el.style.height = 'auto';
-    const contentHeight = el.scrollHeight;
-    el.style.height = `${contentHeight}px`;
-
-    const contentWidth = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, el.scrollWidth + 32));
-    const nodeHeight = Math.max(MIN_HEIGHT, contentHeight + 72);
-
-    el.closest('.node-shell')?.style.setProperty('width', `${contentWidth}px`);
-    el.closest('.node-shell')?.style.setProperty('min-height', `${nodeHeight}px`);
+    el.style.height = `${el.scrollHeight}px`;
   }, []);
 
   useEffect(() => {
-    resizeNode();
-  }, [text, resizeNode]);
+    resizeTextarea();
+  }, [text, resizeTextarea]);
 
   const handleChange = (e) => {
     updateNodeField(id, 'text', e.target.value);
@@ -64,7 +53,7 @@ export function TextNode({ id, data }) {
           value={text}
           rows={1}
           onChange={handleChange}
-          onInput={resizeNode}
+          onInput={resizeTextarea}
           placeholder="Type text with {{variables}}"
         />
       </NodeField>

@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap, Panel } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
+import { getDefaultNodeStyle } from './constants/nodes';
 import { nodeTypes, getDefaultNodeData } from './nodes';
 import { PipelineToolbar } from './toolbar';
 
@@ -55,6 +56,7 @@ export const PipelineUI = () => {
         type,
         position,
         data: getDefaultNodeData(nodeID, type),
+        style: getDefaultNodeStyle(type),
       });
     },
     [reactFlowInstance, getNodeID, addNode]

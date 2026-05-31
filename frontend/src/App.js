@@ -1,4 +1,3 @@
-import { PipelineToolbar } from './toolbar';
 import { PipelineUI } from './ui';
 import { SubmitButton } from './submit';
 import { TooltipProvider } from './components/ui/tooltip';

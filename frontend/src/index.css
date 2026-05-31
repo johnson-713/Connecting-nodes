@@ -50,4 +50,8 @@
   .pipeline-canvas .react-flow__minimap {
     @apply rounded-[10px] border border-pipeline-border bg-pipeline-surface;
   }
+
+  .pipeline-canvas .node-shell .react-flow__resize-control.handle.bottom.right {
+    @apply opacity-70 transition-opacity hover:opacity-100;
+  }
 }
